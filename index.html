@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Airline System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2><i class="fa-solid fa-plane"></i> AirLine</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1><i class="fa-solid fa-plane"></i> Fly Beyond Limits</h1>
+    <p>Book flights easily with best price & comfort</p>
+
+    <form class="search-box" action="search.php" method="GET" onsubmit="return validateSearch()">
+        <input type="text" name="source" placeholder="From">
+<input type="text" name="destination" placeholder="To">
+<input type="date" name="date">
+<button type="submit">Search Flights</button>
+    </form>
+
+    <div class="hero-buttons">
+        <a href="login.html" class="btn">Book Now</a>
+        <a href="register.html" class="btn2">Create Account</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3><i class="fa-solid fa-plane"></i> Fast Booking</h3>
+        <p>Book flights quickly</p>
+    </div>
+
+    <div class="feature-card">
+        <h3><i class="fa-solid fa-indian-rupee-sign"></i> Best Price</h3>
+        <p>Lowest price guarantee</p>
+    </div>
+
+    <div class="feature-card">
+      <h3><i class="fa-solid fa-shield-halved"></i> Safe Travel</h3>
+        <p>Secure journey</p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
