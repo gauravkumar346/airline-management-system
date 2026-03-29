@@ -1,7 +1,7 @@
 <?php
-$conn = new mysqli("localhost","root","","airline_db");
+$conn = new mysqli("localhost", "root", "", "airline_db");
 
-if($conn->connect_error){
-    die("Connection failed");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

@@ -3,10 +3,14 @@ include 'db.php';
 
 $name = $_POST['name'];
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$conn->query("INSERT INTO users(name,email,password)
-VALUES('$name','$email','$password')");
+$stmt = $conn->prepare("INSERT INTO users(name, email, password) VALUES(?, ?, ?)");
+$stmt->bind_param("sss", $name, $email, $password);
 
-echo "Registered Successfully";
+if ($stmt->execute()) {
+    header("Location: login.html?msg=registered");
+} else {
+    echo "Registration failed. Try again.";
+}
 ?>
