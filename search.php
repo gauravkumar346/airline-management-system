@@ -245,12 +245,17 @@ $result = $stmt->get_result();
             <?php endwhile; ?>
         <?php else: ?>
             <div class="no-results">
-                <i class="fa-solid fa-face-frown"></i>
-                <h2>No Flights Found</h2>
-                <p>No flights available from <?php echo htmlspecialchars($source); ?> to <?php echo htmlspecialchars($destination); ?> on <?php echo htmlspecialchars($date); ?></p>
-                <div class="back-link" style="margin-top: 20px;">
-                    <a href="dashboard.php"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
-                </div>
+    <i class="fa-solid fa-calendar-times" style="font-size: 60px; color: #ff4b2b;"></i>
+    <h2>No Flights Available!</h2>
+    <p>No flights from <?php echo htmlspecialchars($source); ?> → <?php echo htmlspecialchars($destination); ?> on <?php echo htmlspecialchars($date); ?></p>
+    <p>📅 Check availability for nearby dates:</p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
+        <a href="?source=<?php echo $source; ?>&destination=<?php echo $destination; ?>&date=<?php echo date('Y-m-d', strtotime($date . ' -1 day')); ?>" style="padding: 8px 15px; background: #3498db; color: white; border-radius: 5px; text-decoration: none;">← Previous Day</a>
+        <a href="?source=<?php echo $source; ?>&destination=<?php echo $destination; ?>&date=<?php echo date('Y-m-d', strtotime($date . ' +1 day')); ?>" style="padding: 8px 15px; background: #3498db; color: white; border-radius: 5px; text-decoration: none;">Next Day →</a>
+    </div>
+    <div class="back-link">
+        <a href="dashboard.php"><i class="fa-solid fa-home"></i> Back to Dashboard</a>
+    </div>
             </div>
         <?php endif; ?>
     </div>

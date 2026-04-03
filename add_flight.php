@@ -10,24 +10,21 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-session_start();
 include 'db.php';
 
-// Admin check
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
-    exit();
-}
-
-$name        = $_POST['name'];
-$source      = $_POST['source'];
+$name = $_POST['name'];
+$flight_number = $_POST['flight_number'];
+$source = $_POST['source'];
 $destination = $_POST['destination'];
-$date        = $_POST['date'];
-$seats       = $_POST['seats'];
-$price       = $_POST['price'];
+$date = $_POST['date'];
+$flight_day = $_POST['flight_day'];
+$departure_time = $_POST['departure_time'];
+$arrival_time = $_POST['arrival_time'];
+$seats = $_POST['seats'];
+$price = $_POST['price'];
 
-$stmt = $conn->prepare("INSERT INTO flights(flight_name, source, destination, date, seats, price) VALUES(?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssis", $name, $source, $destination, $date, $seats, $price);
+$stmt = $conn->prepare("INSERT INTO flights(flight_name, flight_number, source, destination, date, flight_day, departure_time, arrival_time, seats, price) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssssssis", $name, $flight_number, $source, $destination, $date, $flight_day, $departure_time, $arrival_time, $seats, $price);
 $stmt->execute();
 
 header("Location: admin.php");
