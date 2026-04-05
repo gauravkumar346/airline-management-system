@@ -17,10 +17,10 @@ include 'db.php';
 
 $user_id = $_SESSION['user_id'];
 
-$result = $conn->query("SELECT bookings.*, flights.flight_name, flights.flight_number, flights.source, flights.destination, flights.date, flights.flight_day, flights.departure_time, flights.arrival_time, flights.price 
+$result = $conn->query("SELECT bookings.*, flights.flight_name, flights.flight_number, flights.source, flights.destination, flights.date, flights.flight_day, flights.departure_time, flights.arrival_time 
 FROM bookings 
 JOIN flights ON bookings.flight_id = flights.id
-WHERE bookings.user_id = '$user_id' 
+WHERE bookings.user_id = $user_id 
 ORDER BY bookings.created_at DESC");
 ?>
 
@@ -311,7 +311,7 @@ ORDER BY bookings.created_at DESC");
                         </div>
 
                         <div class="price-total">
-                            Total: ₹<?php echo number_format($row['price'] * $row['seats_booked']); ?>
+                             Total: ₹<?php echo number_format($row['price_per_seat'] * $row['seats_booked']); ?>
                         </div>
 
                         <div class="booking-ref-small">

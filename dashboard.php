@@ -131,13 +131,38 @@ $result = $conn->query($sql);
                     Arrival: <?php echo date('h:i A', strtotime($row['arrival_time'])); ?>
                 </p>
                 <p>Seats Available: <?php echo $row['seats']; ?></p>
-                <p class="flight-price">₹<?php echo $row['price']; ?></p>
+                <p class="flight-price">
+    <?php if($row['economy_seats'] > 0): ?>
+        Economy: ₹<?php echo $row['economy_price']; ?> &nbsp;
+    <?php endif; ?>
+    <?php if($row['business_seats'] > 0): ?>
+        Business: ₹<?php echo $row['business_price']; ?> &nbsp;
+    <?php endif; ?>
+    <?php if($row['first_class_seats'] > 0): ?>
+        First: ₹<?php echo $row['first_class_price']; ?>
+    <?php endif; ?>
+</p>
 
                 <form action="book.php" method="post">
-                    <input type="hidden" name="flight_id" value="<?php echo $row['id']; ?>">
-                    <input type="number" name="seats" placeholder="Number of Seats" min="1" max="<?php echo $row['seats']; ?>" required>
-                    <button type="submit">Book Now</button>
-                </form>
+    <input type="hidden" name="flight_id" value="<?php echo $row['id']; ?>">
+    
+    <!-- Class Select -->
+    <select name="class_type" required style="width:100%; padding:8px; margin:8px 0; border-radius:6px; border:1px solid #ddd;">
+        <option value="">Select Class</option>
+        <?php if($row['economy_seats'] > 0): ?>
+            <option value="economy">Economy — ₹<?php echo $row['economy_price']; ?> (<?php echo $row['economy_seats']; ?> seats left)</option>
+        <?php endif; ?>
+        <?php if($row['business_seats'] > 0): ?>
+            <option value="business">Business — ₹<?php echo $row['business_price']; ?> (<?php echo $row['business_seats']; ?> seats left)</option>
+        <?php endif; ?>
+        <?php if($row['first_class_seats'] > 0): ?>
+            <option value="first_class">First Class — ₹<?php echo $row['first_class_price']; ?> (<?php echo $row['first_class_seats']; ?> seats left)</option>
+        <?php endif; ?>
+    </select>
+
+    <input type="number" name="seats" placeholder="Number of Seats" min="1" required style="width:100%; padding:8px; margin:4px 0; border-radius:6px; border:1px solid #ddd;">
+    <button type="submit">Book Now</button>
+</form>
             </div>
         <?php endwhile; ?>
     <?php else: ?>

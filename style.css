@@ -26,12 +26,12 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 20px 50px;
-    background: rgba(11, 159, 185, 0.6);
+    background: rgb(242, 109, 8);
     backdrop-filter: blur(10px);
 }
 
 .navbar h2 {
-    color: #60f106;
+    color: #edf2ea;
 }
 
 .navbar a {
@@ -41,7 +41,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #ff4b2b;
+    color: #0e0d0c;
 }
 
 /* ================= USER NAV (DASHBOARD) ================= */

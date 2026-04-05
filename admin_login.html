@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Wed, 11 Jan 1984 05:00:00 GMT">
+    <title>Admin Login - Skywings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-btn:hover { background: rgba(255,255,255,0.25); }
+
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+            color: white;
+        }
+
+        .header h2 {
+            color: #1e3c72;
+            font-size: 24px;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px 12px 38px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2a5298;
+            background: white;
+        }
+
+        .admin-note {
+            background: #e8f0fe;
+            border: 1px solid #c5d8fd;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: opacity 0.2s;
+        }
+
+        .submit-btn:hover { opacity: 0.9; }
+
+        .bottom-links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #888;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bottom-links a {
+            color: #2a5298;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .bottom-links a:hover { text-decoration: underline; }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+
+<div class="login-box">
+    <div class="header">
+        <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
+        <h2>Admin Login</h2>
+        <p>Skywings Admin Control Panel</p>
+    </div>
+
+    <div class="admin-note">
+        <i class="fa-solid fa-circle-info"></i>
+        This portal is for authorized admins only.
+    </div>
+
+    <form action="admin_login.php" method="post" autocomplete="off">
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-wrap">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" id="email" placeholder="Enter admin email" required autocomplete="off">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Enter password" required autocomplete="off">
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login as Admin
+        </button>
+    </form>
+
+    <hr class="divider">
+
+    <div class="bottom-links">
+        <span>Don't have admin account? <a href="admin_register.html">Register Here</a></span>
+        <span>Not an admin? <a href="login.html">User Login</a></span>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", function() {
+        localStorage.clear();
+        sessionStorage.clear();
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+    });
+
+    history.pushState(null, null, location.href);
+    window.onpopstate = function() {
+        history.go(1);
+        localStorage.clear();
+        sessionStorage.clear();
+    };
+</script>
+
+</body>
+</html>

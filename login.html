@@ -10,130 +10,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background: url("images/bg.jpg") no-repeat center center/cover;
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .auth-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
             backdrop-filter: blur(5px);
         }
-        
-        .auth-box {
-            background: rgba(135, 133, 133, 0.75);
-            padding: 40px 35px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            width: 380px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .auth-box h2 {
-            color: #ffcc00;
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .auth-box .subtitle {
-            color: #ccc;
-            font-size: 14px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 15px;
-        }
-        
-        .auth-box input {
-            width: 100%;
-            padding: 14px 15px;
-            margin: 12px 0;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        
-        .auth-box input:focus {
-            outline: none;
-            background: white;
-            box-shadow: 0 0 8px rgba(255, 75, 43, 0.5);
-        }
-        
-        .auth-box button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #ff4b2b, #ff4162);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        
-        .auth-box button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
-        }
-        
-        .auth-box p {
-            margin-top: 25px;
-            color: #ccc;
-            font-size: 14px;
-        }
-        
-        .auth-box a {
-            color: #ff4b2b;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .input-icon {
-            position: relative;
-        }
-        
-        .input-icon i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-        
-        .input-icon input {
-            padding-left: 40px;
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
         }
     </style>
 </head>
 
 <body>
 
+<a href="index.html" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Back
+</a>
+
 <div class="auth-container">
     <div class="auth-box">
-        <h2><i class="fa-solid fa-plane"></i> Skywings</h2>
-        <div class="subtitle">Welcome back! Please login to continue</div>
+        <h2>Login</h2>
 
         <form action="login.php" method="post" autocomplete="off">
-            <div class="input-icon">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" name="email" id="email" placeholder="Email Address" required autocomplete="off">
-            </div>
-            <div class="input-icon">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
-            </div>
-            <button type="submit">
-                <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
-            </button>
+            <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
+            <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
+            <button type="submit">Login</button>
         </form>
 
         <p>Don't have an account? <a href="register.html">Create Account</a></p>
@@ -141,15 +50,13 @@
 </div>
 
 <script>
-    // Clear all saved data and prevent back button issues
     window.addEventListener("load", function() {
         localStorage.clear();
         sessionStorage.clear();
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
     });
-    
-    // Disable back button completely after logout
+
     history.pushState(null, null, location.href);
     window.onpopstate = function() {
         history.go(1);

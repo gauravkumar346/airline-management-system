@@ -73,6 +73,17 @@ if(!$booking) {
                     <span class="detail-label">Seats:</span>
                     <span class="detail-value"><?php echo $booking['seats_booked']; ?></span>
                 </div>
+
+                <div class="detail-row">
+                 <span class="detail-label">Class:</span>
+                    <span class="detail-value">
+                     <?php 
+                    if($booking['class_type'] == 'economy') echo '🟢 Economy Class';
+                    elseif($booking['class_type'] == 'business') echo '🔵 Business Class';
+                    elseif($booking['class_type'] == 'first_class') echo '🟠 First Class';
+                     ?>
+                     </span>
+                </div>
                 
                 <div class="seat-number">
                     <i class="fa-solid fa-chair"></i> Seat No: <?php echo $booking['seat_number']; ?>
@@ -80,7 +91,7 @@ if(!$booking) {
                 
                 <div class="detail-row">
                     <span class="detail-label">Total Amount:</span>
-                    <span class="detail-value" style="color:#2ecc71; font-size:20px;">₹<?php echo number_format($booking['price'] * $booking['seats_booked']); ?></span>
+                    <span class="detail-value" style="color:#2ecc71; font-size:20px;">₹<?php echo number_format($booking['price_per_seat'] * $booking['seats_booked']); ?></span>
                 </div>
                 
                 <div class="booking-ref">
